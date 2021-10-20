@@ -1,0 +1,9 @@
+---
+-name: playbook name
+ hosts: #指定执行的主机。
+ become: true/flase   #如果已经在ansbile.cfg中定义过提权不需要加。
+ task: #定义任务
+   - name: task name
+     module: #模块名称
+     args: #模块参数
+ 

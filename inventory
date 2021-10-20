@@ -1,0 +1,12 @@
+[test]
+node[2:3] name=345
+[web]
+master name=123
+[weba:children]
+test
+web
+[weba:vars]
+ivan=lyf
+[finestation1]
+finestation3
+finestation2

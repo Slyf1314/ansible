@@ -1,0 +1,9 @@
+---
+- name: copy fstab data
+  hosts: node2
+  tasks:
+    - name: copy fstab
+      copy:
+        src: /etc/fstab
+        dest: /data/
+          # bachup: yes
