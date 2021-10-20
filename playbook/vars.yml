@@ -1,0 +1,10 @@
+pkgs:
+- httpd
+- mariadb-server
+- php
+- php-mysqlnd
+- firewalld  
+web_srv:
+- httpd
+- mariadb
+- firewalld  

@@ -1,0 +1,19 @@
+---
+- name: finehoo server end 
+  gather_facts: no
+  hosts: finestation2
+  tasks:
+    - name: set hostname
+      hostname:
+        name: finestation
+    - name: set timedate
+      script:
+        cmd: /data/timedatectl.sh
+    - name: cp testpackage
+      copy:
+        src: /root/testPackage-210624
+        dest: /root/
+        force: no
+          #  - name: run linpack and so on
+          #script:
+          #cmd: /data/testpackage-test.sh 

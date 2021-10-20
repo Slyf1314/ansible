@@ -1,0 +1,23 @@
+---
+- name: config http
+  hosts: node3
+  tasks:
+    #- name: removed httpd
+    # yum:
+    #   {name: httpd, state: absent}
+    #- name: remove httpd
+    #  yum:
+    #    {name: httpd, state: absent}
+    - name: stop httpd
+      service:
+        {name: httpd, state: stopped} 
+    - name: remove httpd
+      yum:
+        {name: httpd, state: absent}
+    - name: firewalld 
+      firewalld:
+        {service: http, state: disabled, permanent: yes, immediate: yes}
+    - name: config httpd web sit
+      file:
+        {path: /var/www/html/index.html, state: absent}
+

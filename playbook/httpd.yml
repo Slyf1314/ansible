@@ -1,0 +1,20 @@
+---
+- name: config http
+  hosts: node3
+  tasks:
+    #- name: removed httpd
+    # yum:
+    #   {name: httpd, state: absent}
+    - name: install httpd
+      yum:
+        {name: httpd, state: latest}
+    - name: started httpd
+      service:
+        {name: httpd, state: started} 
+    - name: firewalld open
+      firewalld:
+        {service: http, state: enabled, permanent: yes, immediate: yes}
+    - name: config httpd web sit
+      copy:
+        {content: 'hello1 ivan', dest: /var/www/html/index.html}
+
