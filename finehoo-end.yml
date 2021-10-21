@@ -1,19 +1,40 @@
 ---
 - name: finehoo server end 
-  gather_facts: no
-  hosts: finestation2
+  gather_facts: F
+  hosts: finestation2,finestation1
   tasks:
     - name: set hostname
       hostname:
         name: finestation
     - name: set timedate
       script:
-        cmd: /data/timedatectl.sh
-    - name: cp testpackage
-      copy:
-        src: /root/testPackage-210624
-        dest: /root/
-        force: no
+        cmd: /root/ansible/timedatectl.sh
+    #- name: cp testpackage
+    #  copy:
+    #    src: /root/testPackage-210624
+    #    dest: /root/
+    #    force: no
+    - name: check linux_release
+      shell:
+        cmd: lsb_release -a
+    - name: disabled some service
+      script:
+        cmd: /root/testPackage-/bin/workstationDisableService.sh
+    - name: check system
+      script:
+        cmd: /root/ansible/lesslinpack.txt
+    - name: less test
+      shell: 
+        cmd: cat /root/test-system.txt
+      register: test
+    - name: show test
+      debug: var=test.stdout verbosity=0  
+# script:
+      #  cmd: /root/ansible/lesslinpack.txt
+     # register: script
+    #- name: stdout 
+    #  debug: msg={{ script.stdout }}
+    #  when: script is defined and script|succeeded
           #  - name: run linpack and so on
           #script:
           #cmd: /data/testpackage-test.sh 
