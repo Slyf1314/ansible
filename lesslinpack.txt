@@ -1,0 +1,7 @@
+#!/bin/bash
+path="/root/testPackage-210624"
+sed -ns '33p' $path/test/lin_xeon64.txt >> /root/test-system.txt
+sed -ns '33p' $path/linpack/test-*/lin_* >> /root/test-system.txt
+sed -ns '14p' $path/test/mlc.txt >> /root/test-system.txt
+hdparm -tT /dev/sda >> /root/test-system.txt
+sh $path/dd.sh >> /root/test-system.txt
